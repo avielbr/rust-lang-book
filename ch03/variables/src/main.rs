@@ -1,3 +1,5 @@
+use std::io;
+
 // Variables and mutability
 
 fn var_mut() {
@@ -44,28 +46,46 @@ fn shadow() {
 
 fn data_types() {
     // Just messing around with different data types...
-    let x: u8 = 200;
-    let y: i8 = 100;
-    let z: usize = 1_000_000_000_000;
+    let _x: u8 = 200;
+    let _y: i8 = 100;
+    let _z: usize = 1_000_000_000_000;
 
-    let i: f32 = 2.6;
-    let j: f64 = 2.5;
+    let _i: f32 = 2.6;
+    let _j: f64 = 2.5;
 
     let power = u32::pow(2, 8);
     assert_eq!(power, 2 << (8-1));
     
     println!("{power}");
 
-    let c = 'z';
-    let z: char = 'ℤ'; // with explicit type annotation
-    let heart_eyed_cat = '😻';
+    let _c = 'z';
+    let _z: char = 'ℤ'; // with explicit type annotation
+    let _heart_eyed_cat = '😻';
+
+    let a: [char; 5] = ['🙂', '👹', '🐈', '🧞', '🐆'];
+    let a_len = a.len() - 1;
+    println!("enter index between 0 and {a_len}");
+
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("failed.");
+
+    let input: usize = input
+        .trim()
+        .parse()
+        .expect("failed to get index from input.");
+
+    let element = a[input];
+
+    println!("{element}");
 }
 
 //
 fn main() {
-    var_mut();
-    println!("{THREE_HRS_IN_SECONDS}");
-    shadow();
+    // var_mut();
+    // println!("{THREE_HRS_IN_SECONDS}");
+    // shadow();
     data_types();
 }
 
