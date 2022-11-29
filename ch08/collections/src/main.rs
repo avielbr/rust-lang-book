@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn main() {
     // Vector stored on heap with variable length
     let mut v: Vec<i32> = Vec::new();
@@ -5,11 +7,6 @@ fn main() {
         v.push(i);
     }
     //println!("{:?}", v); // [0, 1, 2, ..., 100]
-
-    let third = &mut v[2];
-    *third = 6;
-    println!("{third}");
-    println!("{}", v[2]);
 
     // Vector initialized with values
     let v2 = vec![0, 1, 2];
@@ -19,4 +16,20 @@ fn main() {
     let v3 = vec![0; 100];
     // println!("{:?}", v3);
 
+    let violet = String::from("violet");
+    let teal = String::from("teal");
+
+    let mut scores = HashMap::new();
+
+    // Note that this transfers owndership to the scores hashmap!
+    scores.insert(violet, 10);
+    scores.insert(teal, 50);
+
+    // Update existing pair...
+    scores.insert(String::from("teal"), 54);
+
+    // Update or insert if doesn't exist...
+    scores.entry(String::from("indigo")).or_insert(29);
+
+    println!("{:?}", scores);
 }
